@@ -1,0 +1,54 @@
+<div>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Promotion</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cards,let i=index">
+                <td>{{i + 1}}</td>
+                <td></td>
+                <td><img width="50px" height="60px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" src="" alt="{{item.product.productName}}"></td>
+                <td>{{item.product.price-(item.product.price*item.product.promotionPrice)/100}}</td>
+                <td>item.product.promotionPrice</td>
+                <td><input type="number" min="1" [value]="item.quantity"></td>
+                <!---->
+                <td>{{item.product.price-(item.product.price*item.product.promotionPrice)/100}}*item.quantity</td>
+                <!---->
+                <td><button class="btn btn-sm btn-danger" (click)="deleteCartItem(item.product)"> Delete </button></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr class="text-right">
+                <td colspan="8">Thanh Tien: {{total}}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="card">
+        <div class="card-header">Thông tin khách hàng</div>
+        <div class="card-body">
+            <form novalidate="" class="ng-untouched ng-pristine ng-invalid">
+                <div class="mb-3"><label class="form-label">Họ tên</label>
+                    <input type="text" formcontrolname="userName" placeholder="Họ tên" class="form-control ng-untouched ng-pristine ng-invalid">
+                    <!---->
+                </div>
+                <div class="mb-3"><label class="form-label">Số điện thoại</label><input type="number" formcontrolname="phoneNumber" placeholder="Phone number" class="form-control ng-untouched ng-pristine ng-invalid">
+                    <!---->
+                </div>
+                <div class="mb-3"><label class="form-label">Địa chỉ</label><textarea formcontrolname="address" rows="3" class="form-control ng-untouched ng-pristine ng-invalid"></textarea>
+                    <!---->
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" disabled=""> Submit </button></div>
+            </form>
+        </div>
+    </div>
+</div>
